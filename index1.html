@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>E-COMMERCE</title>
+    <style>
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+
+/* VARIABLES */
+:root{
+    --first-color: #E3F8FF;
+    --second-color: #DCFAFB;
+    --third-color: #FFE8DF;
+    --accent-color: #FF5151;
+    --dark-color: #161616;
+
+    --body-font: 'Open Sans';
+    --h1-font-size: 1.5rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.938rem;
+    --smaller-font-size: 0.75rem;
+}
+
+
+/* RESPONSIVE FONTS */
+@media screen and (min-width: 768px){
+    :root{
+        --h1-font-size: 2rem;
+        --normal-font-size: 1rem;
+        --smaller-font-size: 0.813rem;
+    }
+}
+
+/* BASE */
+*,::after,::before{
+    box-sizing: border-box;
+}
+body{
+    margin: 0.5rem 0 0 0;
+    background-color: #fff;
+    color: var(--dark-color);
+    font-family: var(--body-font);
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/* GRID */
+.bd-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 1rem;
+}
+
+/* CARD */
+.card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1.5rem;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    transition: .4s;
+}
+
+article:nth-child(1){ background-color: var(--first-color); }
+article:nth-child(2){ background-color: var(--second-color); }
+article:nth-child(3){ background-color: var(--third-color); }
+article:nth-child(4){ background-color: var(--second-color); }
+
+/* IMAGE */
+.card__img{
+    width: 180px;
+    height: auto;
+    padding: 2.5rem 0;
+    transition: .5s;
+}
+
+/* BOTTOM SLIDE NAME */
+.card__name{
+    position: absolute;
+    left: 0;
+    bottom: -25%;
+    width: 100%;
+    height: 1.5rem;
+    background-color: rgba(22,22,22,0.85);
+    backdrop-filter: blur(2px);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: .5s;
+    z-index: 2;
+}
+
+/* SHOW NAME ON HOVER (but above price) */
+.card:hover .card__name{
+    bottom: 45%;
+}
+
+/* PRICE AREA */
+.card__precis{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    transition: .5s;
+    z-index: 3;
+}
+.card__preci--before{
+    font-size: var(--smaller-font-size);
+    color: var(--accent-color);
+    text-decoration: line-through;
+}
+.card__preci--now{
+    font-size: var(--h3-font-size);
+    font-weight: bold;
+}
+
+/* ICON */
+.card__icon{
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.card__icon:hover{
+    color: var(--accent-color);
+}
+
+/* HOVER EFFECT */
+.card:hover{
+    box-shadow: 0 .5rem 1rem #D1D9E6;
+}
+.card:hover .card__img{
+    transform: rotate(30deg);
+    margin-bottom: 2rem;
+}
+.card:hover .card__precis{
+    transform: translateY(-2px);
+}
+
+/* RED DISCOUNT TAG */
+.card__discount{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: #ff3535;
+    color: #fff;
+    padding: 3px 10px;
+    font-size: .8rem;
+    font-weight: bold;
+
+    border-radius: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+    z-index: 2;
+}
+
+
+
+
+
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .add-to-cart {
+            bottom: -50px;
+            transition: 0.3s ease;
+            z-index: 10;
+        }
+
+        .product-card:hover .add-to-cart {
+            bottom: 0 !important;
+        }
+
+        .hover-icon:hover {
+            background-color: #DB4444 !important;
+            color: white !important;
+        }
+
+        /* Image Slider Navigation Styling */
+        .inner-swiper .swiper-button-next,
+        .inner-swiper .swiper-button-prev {
+            color: #000;
+            scale: 0.5;
+            opacity: 0;
+            transition: 0.3s;
+        }
+        .btn-view-all {
+            background-color: #db4444; /* The specific red from the image */
+            color: white;
+            padding: 16px 48px;
+            border-radius: 4px;
+            border: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn-view-all:hover {
+            background-color: #c03939;
+            color: white;
+        }
+
+        .section-container {
+            padding: 60px 0;
+            /* Creates the thick blue-ish/grey line at the bottom */
+            border-bottom: 1px solid #e5e5e5; 
+            text-align: center;
+        }
+
+        .product-card:hover .inner-swiper .swiper-button-next,
+        .product-card:hover .inner-swiper .swiper-button-prev {
+            opacity: 0.5;
+        }
+
+
+        /* Fix: Ensure the inner navigation buttons don't overflow */
+        .inner-swiper {
+            position: static !important;
+        }
+
+        .product-card .inner-swiper .swiper-button-next,
+        .product-card .inner-swiper .swiper-button-prev {
+            opacity: 0;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .product-card:hover .inner-swiper .swiper-button-next,
+        .product-card:hover .inner-swiper .swiper-button-prev {
+            opacity: 1;
+        }
+
+        .fa-camera {
+            font-size: 40px;
+        }
+
+        .danger-hover {
+            transition: .5s;
+        }
+
+        .danger-hover:hover {
+            background-color: #DB4444;
+            color: white;
+            stroke: white;
+
+        }
+
+       .danger-hover path,
+.danger-hover line {
+    transition: stroke 0.5s;
+}
+
+.danger-hover:hover path,
+.danger-hover:hover line {
+    stroke: white;
+}
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <body style="font-family: 'Inter', sans-serif;">
+
+
+
+
+        <div class="bg-black text-white text-center py-2" style="font-size: 14px;">
+            <div class="container d-flex justify-content-between align-items-center">
+                <div class="flex-grow-1">
+                    Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!
+                    <a href="#" class="text-white fw-bold ms-2">ShopNow</a>
+                </div>
+                <div class="dropdown">
+                    <span class="dropdown-toggle" style="cursor: pointer;">English</span>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom py-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold fs-3" href="#">Exclusive</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link active border-bottom border-2 border-dark"
+                                href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark mx-2" href="./index-5.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark mx-2" href="./index-4.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark mx-2" href="./index-2.html">Sign Up</a></li>
+                           
+                    </ul>
+                    <div class="d-flex align-items-center">
+                        <div class="input-group me-3" style="background-color: #f5f5f5; border-radius: 4px;">
+                            <input type="text" class="form-control border-0 bg-transparent"
+                                placeholder="What are you looking for?" style="font-size: 13px; width: 200px;">
+                            <span class="input-group-text border-0 bg-transparent"><i
+                                    class="fa-solid fa-magnifying-glass"></i> <i class="fa-solid fa-heart"></i> <i
+                                    class="fa-solid fa-cart-shopping"></i> </span>
+                        </div>
+                        <i class="bi bi-heart fs-4 me-3" style="cursor: pointer;"></i>
+                        <i class="bi bi-cart3 fs-4" style="cursor: pointer;"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-lg-3 border-end pe-4 d-none d-lg-block">
+                    <ul class="list-unstyled">
+                        <li class="mb-3 d-flex justify-content-between align-items-center">Woman's Fashion <i
+                                class="bi bi-chevron-right"></i></li>
+                        <li class="mb-3 d-flex justify-content-between align-items-center">Men's Fashion <i
+                                class="bi bi-chevron-right"></i></li>
+                        <li class="mb-3">Electronics</li>
+                        <li class="mb-3">Home & Lifestyle</li>
+                        <li class="mb-3">Medicine</li>
+                        <li class="mb-3">Sports & Outdoor</li>
+                        <li class="mb-3">Baby's & Toys</li>
+                        <li class="mb-3">Groceries & Pets</li>
+                        <li class="mb-3">Health & Beauty</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-9 ps-lg-5">
+                    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel"
+                        style="background-color: #000; color: #fff; min-height: 350px;">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"
+                                style="width: 12px; height: 12px; border-radius: 50%;"></button>
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                                style="width: 12px; height: 12px; border-radius: 50%;"></button>
+                            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"
+                                style="width: 12px; height: 12px; border-radius: 50%;"></button>
+                        </div>
+
+                        <div class="carousel-inner h-100">
+                            <div class="carousel-item active p-5">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="bi bi-apple fs-1 me-3"></i>
+                                            <span>iPhone 14 Series</span>
+                                        </div>
+                                        <h1 class="display-4 fw-bold mb-4">Up to 10% <br> off Voucher</h1>
+                                        <a href="#" class="text-white text-decoration-none border-bottom pb-1">Shop Now
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <div
+                                            style="width: 100%; height: 250px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                            <span class="text-secondary"><img
+                                                    src="./images/hero_endframe__cvklg0xk3w6e_large 2.png"
+                                                    alt=""></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item p-5">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <i class="bi bi-apple fs-1 me-3"></i>
+                                            <span>New Arrivals</span>
+                                        </div>
+                                        <h1 class="display-4 fw-bold mb-4">Summer <br> Collection</h1>
+                                        <a href="#" class="text-white text-decoration-none border-bottom pb-1">Shop Now
+                                            <i class="bi bi-arrow-right ms-2"></i></a>
+                                    </div>
+                                    <div class="col-md-6 text-center">
+                                        <div
+                                            style="width: 100%; height: 250px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                                            <span class="text-secondary"><img
+                                                    src="./images/hero_endframe__cvklg0xk3w6e_large 2.png"
+                                                    alt=""></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- -----------------------------------section two ----------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- ------------------------section new------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------------------------------sliders cards --------------------------------------------------------------- -->
+
+
+
+<div class="container my-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <small class="text-danger fw-semibold">Today’s</small>
+      <h4 class="fw-bold mb-0">Flash Sales</h4>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="fw-bold">03</span>:<span class="fw-bold">23</span>:<span class="fw-bold">19</span>:<span class="fw-bold">56</span>
+    </div>
+  </div>
+
+  <div id="flashSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500" data-bs-wrap="true">
+    <div class="carousel-inner">
+
+      <!-- SLIDE -->
+      <div class="carousel-item active">
+        <div class="row g-4">
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-40%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 611.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">HAVIT HV-G92 Gamepad</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$120</span> <del class="text-muted">$160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(88)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-35%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 612.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">AK-900 Wired Keyboard</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$960</span> <del class="text-muted">$1160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(75)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-30%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 613.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">IPS LCD Gaming Monitor</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$370</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DUPLICATE SLIDE FOR INFINITE FEEL -->
+      <div class="carousel-item">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center"> <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div></div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.flash-card .add-cart{
+  position:absolute;
+  bottom:-50px;
+  left:0;
+  transition:.3s;
+}
+.flash-card:hover .add-cart{
+  bottom:0;
+}
+.flash-card i{
+  cursor:pointer;
+}
+</style>
+
+
+<section class="section-container">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-view-all">View All Products</a>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ----------------------------number two cards slider --------------------------------------------------------------- -->
+
+
+
+
+<div class="container p-5 my-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <small class="text-danger fw-semibold">This month </small>
+      <h4 class="fw-bold mb-0">Best Selling Products </h4>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="fw-bold">03</span>:<span class="fw-bold">23</span>:<span class="fw-bold">19</span>:<span class="fw-bold">56</span>
+    </div>
+  </div>
+
+  <div id="flashSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500" data-bs-wrap="true">
+    <div class="carousel-inner">
+
+      <!-- SLIDE -->
+      <div class="carousel-item active">
+        <div class="row g-4">
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-40%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 605.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">HAVIT HV-G92 Gamepad</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$120</span> <del class="text-muted">$160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(88)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-35%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 606.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">AK-900 Wired Keyboard</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$960</span> <del class="text-muted">$1160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(75)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-30%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 610.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">IPS LCD Gaming Monitor</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$370</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 612 (1).png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DUPLICATE SLIDE FOR INFINITE FEEL -->
+      <div class="carousel-item">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 605.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 606.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center"> <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div></div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.flash-card .add-cart{
+  position:absolute;
+  bottom:-50px;
+  left:0;
+  transition:.3s;
+}
+.flash-card:hover .add-cart{
+  bottom:0;
+}
+.flash-card i{
+  cursor:pointer;
+}
+</style>
+
+
+
+
+
+            <!-- --------------------------------section start ----------------------------------- -->
+
+
+
+
+
+
+            <div class=" container mx-auto p-0 row border">
+                <div class="d-flex align-items-center mb-3">
+                    <div style="width: 20px; height: 40px; background-color: #DB4444;" class="rounded-1 me-3"></div>
+                    <span style="color: #DB4444;" class="fw-bold">Oour products</span>
+
+                </div>
+                <h1 class="fw-bold fs-1 mb-0">Browse by Category</h1>
+            </div>
+
+<div class="container d-flex flex-wrap justify-content-between my-5">
+
+    <!-- Item 1 -->
+    <div class="border border-dark danger-hover d-flex flex-column justify-content-center align-items-center 
+                px-3 py-3 gap-2 gap-md-3 flex-fill m-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_151_3441)">
+                <path d="M38.9375 6.125H17.0625C15.5523 6.125 14.3281 7.34922 14.3281 8.85938V47.1406C14.3281 48.6508 15.5523 49.875 17.0625 49.875H38.9375C40.4477 49.875 41.6719 48.6508 41.6719 47.1406V8.85938C41.6719 7.34922 40.4477 6.125 38.9375 6.125Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M25.6667 7H31.1355" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M28 44.0052V44.0305" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="15.1667" y1="39.8333" x2="40.8334" y2="39.8333" stroke="black" stroke-width="2"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_151_3441"><rect width="56" height="56" fill="white"/></clipPath>
+            </defs>
+        </svg>
+        <p class="text-center p-0 m-0">Phone</p>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="border border-dark danger-hover d-flex flex-column justify-content-center align-items-center 
+                px-3 py-3 gap-2 gap-md-3 flex-fill m-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_151_787)">
+                <path d="M46.6667 9.33331H9.33333C8.04467 9.33331 7 10.378 7 11.6666V35C7 36.2886 8.04467 37.3333 9.33333 37.3333H46.6667C47.9553 37.3333 49 36.2886 49 35V11.6666C49 10.378 47.9553 9.33331 46.6667 9.33331Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16.3333 46.6667H39.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 37.3333V46.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M35 37.3333V46.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8 32H48" stroke="black" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_151_787"><rect width="56" height="56" fill="white"/></clipPath>
+            </defs>
+        </svg>
+        <p class="text-center p-0 m-0">Phone</p>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="border border-dark danger-hover d-flex flex-column justify-content-center align-items-center 
+                px-3 py-3 gap-2 gap-md-3 flex-fill m-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_151_3515)">
+                <path d="M35 14H21C17.134 14 14 17.134 14 21V35C14 38.866 17.134 42 21 42H35C38.866 42 42 38.866 42 35V21C42 17.134 38.866 14 35 14Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 42V49H35V42" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 14V7H35V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="24" y1="23" x2="24" y2="34" stroke="black" stroke-width="2"/>
+                <line x1="28" y1="28" x2="28" y2="34" stroke="black" stroke-width="2"/>
+                <line x1="32" y1="26" x2="32" y2="34" stroke="black" stroke-width="2"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_151_3515"><rect width="56" height="56" fill="white"/></clipPath>
+            </defs>
+        </svg>
+        <p class="text-center p-0 m-0">Phone</p>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="border border-dark danger-hover d-flex flex-column justify-content-center align-items-center 
+                px-3 py-3 gap-2 gap-md-3 flex-fill m-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_151_1633)">
+                <path d="M11.6667 16.3333H14C15.2377 16.3333 16.4247 15.8416 17.2998 14.9665C18.175 14.0913 18.6667 12.9043 18.6667 11.6666C18.6667 11.0478 18.9125 10.4543 19.3501 10.0167C19.7877 9.57915 20.3812 9.33331 21 9.33331H35C35.6188 9.33331 36.2123 9.57915 36.6499 10.0167C37.0875 10.4543 37.3333 11.0478 37.3333 11.6666C37.3333 12.9043 37.825 14.0913 38.7002 14.9665C39.5753 15.8416 40.7623 16.3333 42 16.3333H44.3333C45.571 16.3333 46.758 16.825 47.6332 17.7001C48.5083 18.5753 49 19.7623 49 21V42C49 43.2377 48.5083 44.4246 47.6332 45.2998C46.758 46.175 45.571 46.6666 44.3333 46.6666H11.6667C10.429 46.6666 9.242 46.175 8.36683 45.2998C7.49167 44.4246 7 43.2377 7 42V21C7 19.7623 7.49167 18.5753 8.36683 17.7001C9.242 16.825 10.429 16.3333 11.6667 16.3333" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M28 37.3333C31.866 37.3333 35 34.1993 35 30.3333C35 26.4673 31.866 23.3333 28 23.3333C24.134 23.3333 21 26.4673 21 30.3333C21 34.1993 24.134 37.3333 28 37.3333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_151_1633"><rect width="56" height="56" fill="white"/></clipPath>
+            </defs>
+        </svg>
+        <p class="text-center p-0 m-0">Camera</p>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="border border-dark danger-hover d-flex flex-column justify-content-center align-items-center 
+                px-3 py-3 gap-2 gap-md-3 flex-fill m-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_151_249)">
+                <path d="M16.3333 30.3333H13.9999C11.4226 30.3333 9.33325 32.4227 9.33325 35V42C9.33325 44.5773 11.4226 46.6666 13.9999 46.6666H16.3333C18.9106 46.6666 20.9999 44.5773 20.9999 42V35C20.9999 32.4227 18.9106 30.3333 16.3333 30.3333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M42 30.3333H39.6667C37.0893 30.3333 35 32.4227 35 35V42C35 44.5773 37.0893 46.6666 39.6667 46.6666H42C44.5773 46.6666 46.6667 44.5773 46.6667 42V35C46.6667 32.4227 44.5773 30.3333 42 30.3333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9.33325 35V28C9.33325 23.0493 11.2999 18.3013 14.8006 14.8007C18.3013 11.3 23.0492 9.33331 27.9999 9.33331C32.9506 9.33331 37.6986 11.3 41.1992 14.8007C44.6999 18.3013 46.6666 23.0493 46.6666 28V35" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_151_249"><rect width="56" height="56" fill="#222"/></clipPath>
+            </defs>
+        </svg>
+        <p class="text-center p-0 m-0">Phone</p>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="border border-dark danger-hover d-flex flex-column justify-content-center align-items-center 
+                px-3 py-3 gap-2 gap-md-3 flex-fill m-2">
+        <svg width="36" height="36" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_151_3477)">
+                <path d="M46.6667 14H9.33341C6.75609 14 4.66675 16.0893 4.66675 18.6667V37.3333C4.66675 39.9107 6.75609 42 9.33341 42H46.6667C49.2441 42 51.3334 39.9107 51.3334 37.3333V18.6667C51.3334 16.0893 49.2441 14 46.6667 14Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 28H23.3333M18.6667 23.3333V32.6666" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M35 25.6667V25.6909" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M42 30.3333V30.3574" stroke="black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <defs>
+                <clipPath id="clip0_151_3477"><rect width="56" height="56" fill="white"/></clipPath>
+            </defs>
+        </svg>
+        <p class="text-center p-0 m-0">Phone</p>
+    </div>
+
+</div>
+
+
+<!-- ------------------------sliders end --------------------------------------------------------------- -->
+
+
+<div class="container my-5">
+  <div class="row align-items-center rounded-3 overflow-hidden"
+       style="min-height:360px;background:linear-gradient(90deg,#000 0%,#0b0b0b 45%,#1b1b1b 100%);">
+
+    <!-- LEFT CONTENT -->
+    <div class="col-lg-6 col-md-12 px-5 text-white">
+      <small class="fw-semibold" style="color:#00ff66;">Categories</small>
+
+      <h1 class="fw-bold mt-3 mb-4" style="font-size:40px;line-height:1.2;">
+        Enhance Your<br>Music Experience
+      </h1>
+
+      <!-- TIMER -->
+      <div class="d-flex gap-3 mb-4">
+        <div class="bg-white text-dark rounded-circle d-flex flex-column justify-content-center align-items-center"
+             style="width:62px;height:62px;">
+          <strong>23</strong>
+          <small class="text-muted">Hours</small>
+        </div>
+        <div class="bg-white text-dark rounded-circle d-flex flex-column justify-content-center align-items-center"
+             style="width:62px;height:62px;">
+          <strong>05</strong>
+          <small class="text-muted">Days</small>
+        </div>
+        <div class="bg-white text-dark rounded-circle d-flex flex-column justify-content-center align-items-center"
+             style="width:62px;height:62px;">
+          <strong>59</strong>
+          <small class="text-muted">Minutes</small>
+        </div>
+        <div class="bg-white text-dark rounded-circle d-flex flex-column justify-content-center align-items-center"
+             style="width:62px;height:62px;">
+          <strong>35</strong>
+          <small class="text-muted">Seconds</small>
+        </div>
+      </div>
+
+      <!-- BUTTON -->
+      <button class="btn fw-semibold px-4 py-2"
+              style="background:#00ff66;color:#000;border-radius:4px;">
+        Buy Now!
+      </button>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="col-lg-6 col-md-12 text-center">
+      <img src="./images/Frame 694.png"
+           class="img-fluid"
+           style="max-height:300px;">
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ---------------------------------sliders 3 start --------------------------------------------------- -->
+
+
+
+<div class="container p-5 my-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <small class="text-danger fw-semibold">This month </small>
+      <h4 class="fw-bold mb-0">Best Selling Products </h4>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="fw-bold">03</span>:<span class="fw-bold">23</span>:<span class="fw-bold">19</span>:<span class="fw-bold">56</span>
+    </div>
+  </div>
+
+  <div id="flashSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500" data-bs-wrap="true">
+    <div class="carousel-inner">
+
+      <!-- SLIDE -->
+      <div class="carousel-item active">
+        <div class="row g-4">
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-40%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/71RdoeXxtrL 1.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">HAVIT HV-G92 Gamepad</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$120</span> <del class="text-muted">$160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(88)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-35%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 604.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">AK-900 Wired Keyboard</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$960</span> <del class="text-muted">$1160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(75)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-30%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Cart.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">IPS LCD Gaming Monitor</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$370</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 604.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DUPLICATE SLIDE FOR INFINITE FEEL -->
+      <div class="carousel-item">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/71RdoeXxtrL 1.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Cart.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center"> <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 604.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div></div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.flash-card .add-cart{
+  position:absolute;
+  bottom:-50px;
+  left:0;
+  transition:.3s;
+}
+.flash-card:hover .add-cart{
+  bottom:0;
+}
+.flash-card i{
+  cursor:pointer;
+}
+</style>
+
+
+
+
+
+
+
+
+
+  
+
+ 
+
+
+
+
+
+   
+            
+
+
+
+<!-- -----------------------------section sliders 4 ----------------------------------- -->
+
+
+
+
+
+<div class="container p-5 my-5">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+      <small class="text-danger fw-semibold">This month </small>
+      <h4 class="fw-bold mb-0">Best Selling Products </h4>
+    </div>
+    <div class="d-flex gap-2">
+      <span class="fw-bold">03</span>:<span class="fw-bold">23</span>:<span class="fw-bold">19</span>:<span class="fw-bold">56</span>
+    </div>
+  </div>
+
+  <div id="flashSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500" data-bs-wrap="true">
+    <div class="carousel-inner">
+
+      <!-- SLIDE -->
+      <div class="carousel-item active">
+        <div class="row g-4">
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-40%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/71RdoeXxtrL 1.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">HAVIT HV-G92 Gamepad</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$120</span> <del class="text-muted">$160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(88)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-35%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 604.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">AK-900 Wired Keyboard</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$960</span> <del class="text-muted">$1160</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(75)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-30%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Cart.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">IPS LCD Gaming Monitor</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$370</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+          <!-- CARD -->
+          <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 604.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DUPLICATE SLIDE FOR INFINITE FEEL -->
+      <div class="carousel-item">
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/71RdoeXxtrL 1.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Cart.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center"> <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 604.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div></div></div>
+          <div class="col-lg-3 col-md-6 col-sm-12"><div class="flash-card p-3 border rounded-2 text-center">
+             <div class="position-relative border rounded-2 p-3 text-center overflow-hidden flash-card">
+              <span class="badge bg-danger position-absolute top-0 start-0 m-2">-25%</span>
+              <i class="far fa-heart position-absolute top-0 end-0 m-2"></i>
+              <img src="./images/Frame 614.png" class="img-fluid mb-3" style="height:140px;">
+              <button class="btn btn-dark w-100 add-cart">Add To Cart</button>
+              <h6 class="mt-3 mb-1">S-Series Comfort Chair</h6>
+              <p class="mb-1"><span class="text-danger fw-bold">$375</span> <del class="text-muted">$400</del></p>
+              <div class="text-warning small">★★★★★ <span class="text-muted">(99)</span></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<style>
+.flash-card .add-cart{
+  position:absolute;
+  bottom:-50px;
+  left:0;
+  transition:.3s;
+}
+.flash-card:hover .add-cart{
+  bottom:0;
+}
+.flash-card i{
+  cursor:pointer;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- ------------------------------------section start------------------------------------------ -->
+
+             <section class="section-container">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-view-all">View All Products</a>
+        </div>
+    </div>
+</section>
+
+                <div class=" container-fluid p-5 my-5 row">
+                    <div style="padding-left: 20px;" class="d-flex mx-auto  align-items-center mb-3">
+                        <div style="width: 20px; height: 40px; background-color: #DB4444;" class="rounded-1 me-3"></div>
+                        <span style="color: #DB4444;" class="fw-bold">Our products</span>
+
+                    </div>
+                    <h1 class="fw-bold fs-1 mx-auto mb-0">Explore Our Products</h1>
+                </div>
+                <!-- 
+<div class= " container row mx-auto">
+    <div class="col col-md-3 ">1</div>
+    <div class="col">2</div>
+    <div class="col">3</div>
+    <div class="col">4</div>
+</div> -->
+
+
+                <!-- <div class="swiper inner-swiper h-30 w-30">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide d-flex align-items-center justify-content-center">
+                                <img src="./images/Frame 611.png" alt="Img 1" class="img-fluid p-4"> </div>
+                            <div class="swiper-slide d-flex align-items-center justify-content-center">
+                                <img src="./images/Frame 612.png" alt="Img 2" class="img-fluid p-4"> </div>
+                                <div class="swiper-slide d-flex align-items-center justify-content-center">
+                                <img src="./images/Frame 613.png" alt="Img 2" class="img-fluid p-4"> </div>
+                                <div class="swiper-slide d-flex align-items-center justify-content-center">
+                                <img src="./images/Frame 614.png" alt="Img 2" class="img-fluid p-4"> </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="container my-5 " style="font-family: Inter, sans-serif;">
+
+  <!-- Header -->
+  <div class="mb-4">
+    <div class="d-flex align-items-center gap-2 mb-2">
+      <div style="width:6px;height:24px;background:#DB4444;border-radius:2px;"></div>
+      <span style="color:#DB4444;font-size:14px;font-weight:600;">Featured</span>
+    </div>
+    <h2 style="font-size:32px;font-weight:700;color:#000;">New Arrival</h2>
+  </div>
+
+  <!-- Grid -->
+  <div class="row g-4">
+
+    <!-- Left Large Card -->
+    <div class="col-lg-6 col-12">
+      <div class="position-relative rounded overflow-hidden h-100"
+           style="background:#000;min-height:520px;">
+        <img src="images/ps5-slim-goedkope-playstation_large 1.png"
+             class="position-absolute end-0 bottom-0 img-fluid"
+             style="max-height:90%;">
+        <div class="position-absolute bottom-0 start-0 p-4 text-white">
+          <h5 style="font-size:20px;font-weight:600;">PlayStation 5</h5>
+          <p style="font-size:14px;max-width:260px;">
+            Black and White version of the PS5 coming out on sale.
+          </p>
+          <span style="font-size:14px;font-weight:500;text-decoration:underline;cursor:pointer;">
+            Shop Now
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="col-lg-6 col-12">
+      <div class="row g-4">
+
+        <!-- Top Right -->
+        <div class="col-12">
+          <div class="position-relative rounded overflow-hidden"
+               style="background:#0b0b0b;min-height:240px;">
+            <img src="images/attractive-woman-wearing-hat-posing-black-background 1.png"
+                 class="position-absolute end-0 bottom-0 img-fluid"
+                 style="max-height:100%;">
+            <div class="position-absolute bottom-0 start-0 p-4 text-white">
+              <h5 style="font-size:20px;font-weight:600;">Women’s Collections</h5>
+              <p style="font-size:14px;max-width:260px;">
+                Featured woman collections that give you another vibe.
+              </p>
+              <span style="font-size:14px;font-weight:500;text-decoration:underline;cursor:pointer;">
+                Shop Now
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Left -->
+        <div class="col-md-6 col-12">
+          <div class="position-relative rounded overflow-hidden"
+               style="background:#000;min-height:240px;">
+            <img src="images/Frame 707.png"
+                 class="position-absolute end-0 bottom-0 img-fluid"
+                 style="max-height:85%;">
+            <div class="position-absolute bottom-0 start-0 p-4 text-white">
+              <h6 style="font-size:18px;font-weight:600;">Speakers</h6>
+              <p style="font-size:14px;">Amazon wireless speakers</p>
+              <span style="font-size:14px;font-weight:500;text-decoration:underline;cursor:pointer;">
+                Shop Now
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Right -->
+        <div class="col-md-6 col-12">
+          <div class="position-relative rounded overflow-hidden"
+               style="background:#000;min-height:240px;">
+            <img src="images/Frame 706.png"
+                 class="position-absolute end-0 bottom-0 img-fluid"
+                 style="max-height:85%;">
+            <div class="position-absolute bottom-0 start-0 p-4 text-white">
+              <h6 style="font-size:18px;font-weight:600;">Perfume</h6>
+              <p style="font-size:14px;">GUCCI INTENSE OUD EDP</p>
+              <span style="font-size:14px;font-weight:500;text-decoration:underline;cursor:pointer;">
+                Shop Now
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<section class="py-5">
+  <div class="container">
+    <div class="row text-center">
+
+      <!-- Feature 1 -->
+      <div class="col-md-4 mb-4">
+        <div style="width:80px;height:80px;background:#bcbcbc;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+          <div style="width:58px;height:58px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <!-- Truck Icon -->
+            <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
+              <path d="M3 7h11v8h-1a2 2 0 1 0-4 0H8a2 2 0 1 0-4 0H3V7zm13 3h3l2 2v3h-1a2 2 0 1 0-4 0h-0V10z"/>
+            </svg>
+          </div>
+        </div>
+        <h5 style="font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:8px;">
+          Free and Fast Delivery
+        </h5>
+        <p style="font-size:0.9rem;color:#000;">
+          Free delivery for all orders over $140
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-md-4 mb-4">
+        <div style="width:80px;height:80px;background:#bcbcbc;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+          <div style="width:58px;height:58px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <!-- Headphones Icon -->
+            <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
+              <path d="M12 3a9 9 0 0 0-9 9v6a2 2 0 0 0 2 2h2v-6H5v-2a7 7 0 0 1 14 0v2h-2v6h2a2 2 0 0 0 2-2v-6a9 9 0 0 0-9-9z"/>
+            </svg>
+          </div>
+        </div>
+        <h5 style="font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:8px;">
+          24/7 Customer Service
+        </h5>
+        <p style="font-size:0.9rem;color:#000;">
+          Friendly 24/7 customer support
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-md-4 mb-4">
+        <div style="width:80px;height:80px;background:#bcbcbc;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+          <div style="width:58px;height:58px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+            <!-- Shield Check Icon -->
+            <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
+              <path d="M12 2l8 4v6c0 5-3.4 9.7-8 10-4.6-.3-8-5-8-10V6l8-4zm-1 11l5-5-1.4-1.4L11 10.2 9.4 8.6 8 10l3 3z"/>
+            </svg>
+          </div>
+        </div>
+        <h5 style="font-weight:700;font-size:1.1rem;text-transform:uppercase;margin-bottom:8px;">
+          Money Back Guarantee
+        </h5>
+        <p style="font-size:0.9rem;color:#000;">
+          We return money within 30 days
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Back To Top Button -->
+<div style="position:fixed;bottom:40px;right:40px;width:40px;height:40px;background:#f5f5f5;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,0.1);cursor:pointer;">
+  <svg width="18" height="18" fill="#000" viewBox="0 0 24 24">
+    <path d="M12 4l-8 8h6v8h4v-8h6z"/>
+  </svg>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="container-fluid" style="background-color:#000;color:#fff;padding:80px 0 24px;font-family:sans-serif;">
+  <div class="container">
+    <div class="row">
+
+      <!-- Brand / Subscribe -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h5 style="font-weight:700;font-size:1.5rem;margin-bottom:24px;">Exclusive</h5>
+        <h6 style="font-weight:500;font-size:1.25rem;margin-bottom:24px;">Subscribe</h6>
+        <p style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;">Get 10% off your first order</p>
+        <div class="position-relative" style="max-width:220px;">
+          <input type="email" placeholder="Enter your email" style="background:transparent;border:1.5px solid #fff;color:#fff;padding:12px;border-radius:4px;width:100%;display:block;">
+          <button style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;font-size:0.9rem;">SEND</button>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 style="font-weight:500;font-size:1.25rem;margin-bottom:24px;">Support</h6>
+        <p style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;">111 Bijoy sarani, Dhaka,<br>DH 1515, Bangladesh.</p>
+        <p style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;">exclusive@gmail.com</p>
+        <p style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;">+88015-88888-9999</p>
+      </div>
+
+      <!-- Account -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 style="font-weight:500;font-size:1.25rem;margin-bottom:24px;">Account</h6>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">My Account</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Login / Register</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Cart</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Wishlist</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Shop</span>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-6 mb-4">
+        <h6 style="font-weight:500;font-size:1.25rem;margin-bottom:24px;">Quick Link</h6>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Privacy Policy</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Terms Of Use</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">FAQ</span>
+        <span style="color:#fafafa;font-size:0.95rem;margin-bottom:16px;display:block;">Contact</span>
+      </div>
+
+      <!-- App Download -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <h6 style="font-weight:500;font-size:1.25rem;margin-bottom:24px;">Download App</h6>
+        <p style="font-size:0.75rem;color:#aaa;margin-bottom:16px;">Save $3 with App New User Only</p>
+        <div class="d-flex align-items-center mb-3">
+          <div style="width:80px;height:80px;background:#fff;color:#000;font-size:0.6rem;display:flex;align-items:center;justify-content:center;margin-right:8px;"><img src="./images/Qr Code (2).png" alt=""></div>
+          <div class="d-flex flex-column">
+            <div style="border:1px solid #fff;padding:6px 10px;font-size:0.75rem;margin-bottom:8px;text-align:center;"><img src="./images/GooglePlay.png" alt=""></div>
+            <div style="border:1px solid #fff;padding:6px 10px;font-size:0.75rem;margin-bottom:8px;text-align:center;"><img src="./images/AppStore.png" alt=""></div>
+          </div>
+        </div>
+        <div>
+          <span style="font-size:1rem;margin-right:20px;cursor:pointer;">Facebook</span>
+          <span style="font-size:1rem;margin-right:20px;cursor:pointer;">Twitter</span>
+          <span style="font-size:1rem;margin-right:20px;cursor:pointer;">Instagram</span>
+          <span style="font-size:1rem;margin-right:20px;cursor:pointer;">LinkedIn</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="row">
+      <div class="col-12" style="border-top:1px solid #222;margin-top:60px;padding-top:20px;color:#555;text-align:center;font-size:0.9rem;">
+        © Copyright Rimel 2022. All right reserved
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- --------------------java script--------------------- -->
+
+                <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+                <script>
+
+
+
+
+
+                    document.addEventListener("DOMContentLoaded", function () {
+
+                        /* ---------- STORE INNER SWIPERS ---------- */
+                        document.querySelectorAll(".inner-swiper").forEach((slider) => {
+
+                            const swiperInstance = new Swiper(slider, {
+                                loop: true,
+                                nested: true,
+                                slidesPerView: 1,
+                                grabCursor: true,
+
+                                mousewheel: {
+                                    forceToAxis: true,
+                                    sensitivity: 1,
+                                    releaseOnEdges: true,
+                                },
+
+                                autoplay: {
+                                    delay: 2500,
+                                    disableOnInteraction: false,
+                                },
+
+                                navigation: {
+                                    nextEl: slider.querySelector(".swiper-button-next"),
+                                    prevEl: slider.querySelector(".swiper-button-prev"),
+                                },
+                            });
+                           
+
+
+                             const track = document.getElementById("heroTrack");
+  const slides = document.querySelectorAll(".hero-slide");
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }, 3000);
+                            /* ---------- VIEW IMAGES BUTTON ---------- */
+                            slider.parentElement
+                                .querySelector(".view-images-btn")
+                                .addEventListener("click", () => {
+                                    swiperInstance.slideNext();
+                                });
+                        });
+
+                        /* ---------- MAIN SLIDER ---------- */
+                        new Swiper(".mainSwiper", {
+                            loop: true,
+                            slidesPerView: 4,
+                            spaceBetween: 30,
+                            grabCursor: true,
+
+                            mousewheel: {
+                                forceToAxis: true,
+                                sensitivity: 1,
+                                releaseOnEdges: true,
+                            },
+
+                            autoplay: {
+                                delay: 3000,
+                                disableOnInteraction: false,
+                            },
+
+                            navigation: {
+                                nextEl: ".main-next",
+                                prevEl: ".main-prev",
+                            },
+
+                            breakpoints: {
+                                0: { slidesPerView: 1 },
+                                576: { slidesPerView: 2 },
+                                992: { slidesPerView: 3 },
+                                1200: { slidesPerView: 4 },
+                            },
+                        });
+
+                    });
+
+                    new Swiper(".mainSwiper", {
+  slidesPerView: 4,
+  spaceBetween: 20,
+  navigation: {
+    nextEl: ".main-next",
+    prevEl: ".main-prev",
+  },
+  breakpoints: {
+    0: { slidesPerView: 1 },
+    576: { slidesPerView: 2 },
+    992: { slidesPerView: 4 }
+  }
+});
+
+new Swiper(".inner-swiper", {
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  }
+});
+
+
+
+                </script>
+
+
+
+    </body>
+
+</html>
